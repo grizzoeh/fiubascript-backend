@@ -24,7 +24,7 @@ server.listen(8080, () => {
     console.log('Server listening on port 8080');
 });
 
-const MONGO_URL = 'mongodb+srv://hola:hola@cluster0.9rdcuhh.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URL = 'mongodb+srv://hola:hola@cluster0.e8iyhua.mongodb.net/';
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
