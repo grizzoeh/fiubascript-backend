@@ -19,9 +19,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 const server = http.createServer(app);
+const port = process.env.PORT || 3000;
 
-server.listen(8080, () => {
-    console.log('Server listening on port 8080');
+
+server.listen(port, () => {
+    console.log('Server listening on port ' + port);
 });
 
 const MONGO_URL = 'mongodb+srv://hola:hola@cluster0.e8iyhua.mongodb.net/';
