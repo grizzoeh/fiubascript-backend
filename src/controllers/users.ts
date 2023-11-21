@@ -53,7 +53,7 @@ export const getUserCharacters = async (req: express.Request, res: express.Respo
 
     const user = await getUserById(id);
 
-    return res.status(200).json({ characters: user.characters });
+    return res.status(200).json({ characters: user.characters, currentCharacter: user.currentCharacter });
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);
@@ -61,19 +61,6 @@ export const getUserCharacters = async (req: express.Request, res: express.Respo
 
 }
 
-export const getUserCurrentCharacter = async (req: express.Request, res: express.Response) => {
-  try {
-    const { id } = req.params;
-
-    const user = await getUserById(id);
-
-    return res.status(200).json({ currentCharacter: user.currentCharacter });
-  } catch (error) {
-    console.log(error);
-    return res.sendStatus(400);
-  }
-
-}
 
 export const changeCurrentCharacter = async (req: express.Request, res: express.Response) => {
   try {

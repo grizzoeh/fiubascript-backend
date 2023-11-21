@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getAllUsers, deleteUser, updateUser, getUserCharacters, getUserCurrentCharacter, changeCurrentCharacter } from '../controllers/users';
+import { getAllUsers, deleteUser, updateUser, getUserCharacters, changeCurrentCharacter } from '../controllers/users';
 import { isAuthenticated, isOwner } from '../middlewares';
 
 export default (router: express.Router) => {
@@ -8,6 +8,5 @@ export default (router: express.Router) => {
   router.delete('/users/:id', deleteUser);
   router.patch('/users/:id', updateUser);
   router.get('/users/:id/characters', getUserCharacters);
-  router.get('/users/:id/characters/current', getUserCurrentCharacter);
-  router.put("/users/change_character", changeCurrentCharacter);
+  router.put("/users/characters/", changeCurrentCharacter);
 };
