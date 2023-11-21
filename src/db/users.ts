@@ -10,6 +10,9 @@ const UserSchema = new mongoose.Schema({
     salt: { type: String, select: false },
     sessionToken: { type: String, select: false },
   },
+  coins : { type: Number, default: 0 },
+  characters : { type: Array, default: [] },
+  currentCharacter : { type: Number, default: null },
 });
 
 export const UserModel = mongoose.model('User', UserSchema);

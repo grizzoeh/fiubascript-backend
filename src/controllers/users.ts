@@ -46,3 +46,49 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
     return res.sendStatus(400);
   }
 }
+
+export const getUserCharacters = async (req: express.Request, res: express.Response) => {
+  try {
+    const { id } = req.params;
+
+    const user = await getUserById(id);
+
+    return res.status(200).json({ characters: user.characters });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+
+}
+
+export const getUserCurrentCharacter = async (req: express.Request, res: express.Response) => {
+  try {
+    const { id } = req.params;
+
+    const user = await getUserById(id);
+
+    return res.status(200).json({ currentCharacter: user.currentCharacter });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+
+}
+
+export const changeCurrentCharacter = async (req: express.Request, res: express.Response) => {
+  try {
+    const { userId, characterId } = req.body;
+
+    const user = await getUserById(userId);
+
+    user.currentCharacter = characterId;
+
+    await user.save();
+
+    return res.status(200).json({ currentCharacter: user.currentCharacter });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+
+}
