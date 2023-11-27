@@ -9,6 +9,6 @@ export default (router: express.Router) => {
   router.patch('/users/:id', updateUser);
   router.get('/users/:id/characters', getUserCharacters);
   router.patch("/users/characters", changeCurrentCharacter);
-  router.patch("/users/sum-money", sumCoins);
-  router.patch("/users/reduce-money", reduceCoins);
+  router.patch("/users/sum-coins", sumCoins);
+  router.patch("/users/reduce-coins", reduceCoins);
 };
