@@ -81,8 +81,9 @@ export const changeCurrentCharacter = async (req: express.Request, res: express.
 }
 
 export const sumCoins = async (req: express.Request, res: express.Response) => {
+  const { userId, coins } = req.body;
+
   try {
-    const { userId, coins } = req.body;
 
     const user = await getUserById(userId);
 
@@ -99,8 +100,9 @@ export const sumCoins = async (req: express.Request, res: express.Response) => {
 }
 
 export const reduceCoins = async (req: express.Request, res: express.Response) => {
+  const { userId, coins } = req.body;
+
   try {
-    const { userId, coins } = req.body;
 
     const user = await getUserById(userId);
 
