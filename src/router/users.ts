@@ -8,7 +8,7 @@ export default (router: express.Router) => {
   router.delete('/users/:id', deleteUser);
   router.patch('/users/:id', updateUser);
   router.get('/users/:id/characters', getUserCharacters);
-  router.patch("/users/characters", changeCurrentCharacter);
-  router.patch("/users/sum-coins", sumCoins);
-  router.patch("/users/reduce-coins", reduceCoins);
+  router.post("/users/characters", changeCurrentCharacter);
+  router.post("/users/sum-coins", sumCoins);
+  router.post("/users/reduce-coins", reduceCoins);
 };
