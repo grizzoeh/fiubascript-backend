@@ -7,6 +7,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 import router from './router';
+import swaggerDocs from './utils/swagger';
 
 const app = express();
 
@@ -19,11 +20,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 const server = http.createServer(app);
-const port = process.env.PORT || 3000;
-
+const port = parseInt(process.env.PORT || '3001', 10);
 
 server.listen(port, () => {
     console.log('Server listening on port ' + port);
+    swaggerDocs(app, port);
 });
 
 const MONGO_URL = 'mongodb+srv://hola:hola@cluster0.e8iyhua.mongodb.net/';
