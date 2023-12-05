@@ -1,10 +1,11 @@
 import express from 'express';
 
-import { getAllUsers, deleteUser, updateUser, getUserCharacters, changeCurrentCharacter, sumCoins, reduceCoins } from '../controllers/users';
+import { getAllUsers, deleteUser, updateUser, getUserCharacters, changeCurrentCharacter, sumCoins, reduceCoins, getUserByIdEndpoint } from '../controllers/users';
 import { isAuthenticated, isOwner } from '../middlewares';
 
 export default (router: express.Router) => {
   router.get('/users', getAllUsers);
+  router.get('/users/:id', getUserByIdEndpoint);
   router.delete('/users/:id', deleteUser);
   router.patch('/users/:id', updateUser);
   router.get('/users/:id/characters', getUserCharacters);
@@ -28,6 +29,25 @@ export default (router: express.Router) => {
     /**
      * @openapi
      * /users/{id}:
+     * 
+     *   get:
+     *     summary: Obtener un usuario
+     *     description: Enpoint para obtener un usuario por su ID.
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         description: ID del usuario a obtener
+     *         schema:
+     *           type: string
+     *     responses:
+     *       '200':
+     *         description: Usuario obtenido exitosamente
+     *       '404':
+     *         description: Usuario no encontrado
+     *       '500':
+     *         description: Error interno del 
+     * 
      *   delete:
      *     summary: Eliminar un usuario
      *     description: Enpoint para eliminar un usuario por su ID.
@@ -45,6 +65,25 @@ export default (router: express.Router) => {
      *         description: Usuario no encontrado
      *       '500':
      *         description: Error interno del servidor
+
+     *   patch:
+     *     summary: Actualizar un usuario
+     *     description: Enpoint para actualizar un usuario por su ID.
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         description: ID del usuario a actualizar
+     *         schema:
+     *           type: string
+     *     responses:
+     *       '200':
+     *         description: Usuario actualizado exitosamente
+     *       '404':
+     *         description: Usuario no encontrado
+     *       '500':
+     *         description: Error interno del servidor
+     * 
      */
   
     /**

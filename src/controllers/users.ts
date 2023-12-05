@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { deleteUserById, getUsers, getUserById } from '../db/users';
+import { deleteUserById, getUsers, getUserById, updateUserById } from '../db/users';
 
 export const getAllUsers = async (req: express.Request, res: express.Response) => {
   try {
@@ -12,6 +12,23 @@ export const getAllUsers = async (req: express.Request, res: express.Response) =
     return res.sendStatus(400);
   }
 };
+
+export const getUserByIdEndpoint = async (req: express.Request, res: express.Response) => {
+  try {
+    const { id } = req.params;
+
+    const user = await getUserById(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+}
 
 export const deleteUser = async (req: express.Request, res: express.Response) => {
   try {
@@ -29,23 +46,24 @@ export const deleteUser = async (req: express.Request, res: express.Response) =>
 export const updateUser = async (req: express.Request, res: express.Response) => {
   try {
     const { id } = req.params;
-    const { email } = req.body;
-
-    if (!email) {
-      return res.sendStatus(400);
-    }
+    const updates = req.body;
 
     const user = await getUserById(id);
-    
-    user.email = email;
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+  
+    Object.assign(user, updates);
+
     await user.save();
 
-    return res.status(200).json(user).end();
+    return res.status(200).json({ user: user });
   } catch (error) {
-    console.log(error);
-    return res.sendStatus(400);
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
   }
-}
+};
 
 export const getUserCharacters = async (req: express.Request, res: express.Response) => {
   try {
