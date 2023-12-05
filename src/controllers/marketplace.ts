@@ -11,6 +11,10 @@ export const buyCharacter = async (req: Request, res: Response) => {
     try {
         // Fetch user from the database
         const user = await getUserById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+          }
+      
 
         // Check if the user has enough coins
         if (user.coins < cost) {

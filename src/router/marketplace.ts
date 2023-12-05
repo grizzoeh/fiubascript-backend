@@ -27,8 +27,6 @@ export default (router: express.Router) => {
    *         description: Compra exitosa
    *       '400':
    *         description: Solicitud incorrecta
-   *       '403':
-   *         description: Prohibido
    *       '500':
    *         description: Error interno del servidor
    */

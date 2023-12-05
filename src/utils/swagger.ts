@@ -30,10 +30,8 @@ const options: swaggerJsdoc.Options = {
 const swaggerSpec = swaggerJsdoc(options);
 
 function swaggerDocs(app: Express, port: number) {
-  // Swagger page
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  // Docs in JSON format
   app.get("/docs.json", (req: Request, res: Response) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);

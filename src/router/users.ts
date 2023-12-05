@@ -46,7 +46,7 @@ export default (router: express.Router) => {
      *       '404':
      *         description: Usuario no encontrado
      *       '500':
-     *         description: Error interno del 
+     *         description: Error interno del servidor
      * 
      *   delete:
      *     summary: Eliminar un usuario

@@ -20,7 +20,7 @@ export const getUserByIdEndpoint = async (req: express.Request, res: express.Res
     const user = await getUserById(id);
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
     return res.status(200).json(user);
@@ -51,9 +51,9 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
     const user = await getUserById(id);
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'Usuario no encontrado' });
     }
-  
+
     Object.assign(user, updates);
 
     await user.save();
@@ -71,6 +71,11 @@ export const getUserCharacters = async (req: express.Request, res: express.Respo
 
     const user = await getUserById(id);
 
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+
     return res.status(200).json({ characters: user.characters, currentCharacter: user.currentCharacter });
   } catch (error) {
     console.log(error);
@@ -85,6 +90,11 @@ export const changeCurrentCharacter = async (req: express.Request, res: express.
     const { userId, characterId } = req.body;
 
     const user = await getUserById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
 
     user.currentCharacter = characterId;
 
@@ -105,6 +115,11 @@ export const sumCoins = async (req: express.Request, res: express.Response) => {
 
     const user = await getUserById(userId);
 
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+
     user.coins += coins;
 
     await user.save();
@@ -123,6 +138,11 @@ export const reduceCoins = async (req: express.Request, res: express.Response) =
   try {
 
     const user = await getUserById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
 
     user.coins -= coins;
 
