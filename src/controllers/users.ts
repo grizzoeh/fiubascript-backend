@@ -13,9 +13,9 @@ export const getAllUsers = async (req: express.Request, res: express.Response) =
   }
 };
 
-export const getUserByIdEndpoint = async (req: express.Request, res: express.Response) => {
+export const getUserByIdEndpoint = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const user = await getUserById(id);
 
@@ -30,9 +30,9 @@ export const getUserByIdEndpoint = async (req: express.Request, res: express.Res
   }
 }
 
-export const deleteUser = async (req: express.Request, res: express.Response) => {
+export const deleteUser = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const deletedUser = await deleteUserById(id);
 
@@ -43,9 +43,9 @@ export const deleteUser = async (req: express.Request, res: express.Response) =>
   }
 }
 
-export const updateUser = async (req: express.Request, res: express.Response) => {
+export const updateUser = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
     const updates = req.body;
 
     const user = await getUserById(id);
@@ -65,9 +65,9 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
   }
 };
 
-export const getUserCharacters = async (req: express.Request, res: express.Response) => {
+export const getUserCharacters = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    const { id } = req.params;
+    const { id } = req.params as { id: string };
 
     const user = await getUserById(id);
 
@@ -85,9 +85,9 @@ export const getUserCharacters = async (req: express.Request, res: express.Respo
 }
 
 
-export const changeCurrentCharacter = async (req: express.Request, res: express.Response) => {
+export const changeCurrentCharacter = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    const { userId, characterId } = req.body;
+    const { userId, characterId } = req.body as { userId: string, characterId: number };
 
     const user = await getUserById(userId);
 
@@ -108,8 +108,8 @@ export const changeCurrentCharacter = async (req: express.Request, res: express.
 
 }
 
-export const sumCoins = async (req: express.Request, res: express.Response) => {
-  const { userId, coins } = req.body;
+export const sumCoins = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
+  const { userId, coins } = req.body as { userId: string, coins: number };
 
   try {
 
@@ -132,8 +132,8 @@ export const sumCoins = async (req: express.Request, res: express.Response) => {
 
 }
 
-export const reduceCoins = async (req: express.Request, res: express.Response) => {
-  const { userId, coins } = req.body;
+export const reduceCoins = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
+  const { userId, coins } = req.body as { userId: string, coins: number };
 
   try {
 

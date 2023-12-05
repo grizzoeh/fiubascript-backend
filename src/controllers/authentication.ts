@@ -3,9 +3,9 @@ import express from 'express';
 import { getUserByEmail, createUser } from '../db/users';
 import { authentication, random } from '../helpers';
 
-export const login = async (req: express.Request, res: express.Response) => {
+export const login = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body as { email: string, password: string };
 
     if (!email || !password) {
       return res.sendStatus(400);
@@ -37,9 +37,9 @@ export const login = async (req: express.Request, res: express.Response) => {
   }
 };
 
-export const register = async (req: express.Request, res: express.Response) => {
+export const register = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    const { name, lastName, email, password } = req.body;
+    const { name, lastName, email, password } = req.body as { name: string, lastName: string, email: string, password: string };
 
     if (!email || !password || !name || !lastName) {
       return res.sendStatus(400);

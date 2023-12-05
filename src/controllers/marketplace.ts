@@ -4,9 +4,9 @@ import express, { Request, Response } from 'express';
 
 
 
-export const buyCharacter = async (req: Request, res: Response) => {
+export const buyCharacter = async (req: express.Request, res: express.Response): Promise<express.Response> => {
 
-    const { userId, characterId, cost } = req.body;
+    const { userId, characterId, cost } = req.body as { userId: string, characterId: number, cost: number };
 
     try {
         const user = await getUserById(userId);
