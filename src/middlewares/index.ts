@@ -3,8 +3,6 @@ import { merge, get } from 'lodash';
 
 import { getUserBySessionToken } from '../db/users'; 
 
-// estas estan denegando que no todos puedan hacer cosas en la base, quizas podriamos volar esto
-
 export const isAuthenticated = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
   try {
     const sessionToken = req.cookies['FIUBASCRIPT-AUTH'];
