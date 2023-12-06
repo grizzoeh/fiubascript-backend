@@ -15,6 +15,11 @@ export const getAllUsers = async (req: express.Request, res: express.Response) =
 
 export const getUserByIdEndpoint = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
+    /*
+    Le indica al compilador de TypeScript que trate req.params como un objeto con una propiedad 
+    llamada id de tipo string. Esto es útil cuando el tipo de req.params no puede ser inferido 
+    automáticamente por el compilador.
+    */
     const { id } = req.params as { id: string };
 
     const user = await getUserById(id);
