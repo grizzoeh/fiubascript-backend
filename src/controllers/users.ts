@@ -9,17 +9,12 @@ export const getAllUsers = async (req: express.Request, res: express.Response) =
     return res.status(200).json(users);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.sendStatus(500).json({ error: 'Internal server error' });
   }
 };
 
 export const getUserByIdEndpoint = async (req: express.Request, res: express.Response) : Promise<express.Response> => {
   try {
-    /*
-    Le indica al compilador de TypeScript que trate req.params como un objeto con una propiedad 
-    llamada id de tipo string. Esto es útil cuando el tipo de req.params no puede ser inferido 
-    automáticamente por el compilador.
-    */
     const { id } = req.params as { id: string };
 
     const user = await getUserById(id);
@@ -31,7 +26,7 @@ export const getUserByIdEndpoint = async (req: express.Request, res: express.Res
     return res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.sendStatus(500).json({ error: 'Internal server error' });
   }
 }
 
@@ -44,7 +39,7 @@ export const deleteUser = async (req: express.Request, res: express.Response) : 
     return res.json(deletedUser);
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.sendStatus(500).json({ error: 'Internal server error' });
   }
 }
 
@@ -84,7 +79,7 @@ export const getUserCharacters = async (req: express.Request, res: express.Respo
     return res.status(200).json({ characters: user.characters, currentCharacter: user.currentCharacter });
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.sendStatus(500).json({ error: 'Internal server error' });
   }
 
 }
@@ -108,7 +103,7 @@ export const changeCurrentCharacter = async (req: express.Request, res: express.
     return res.status(200).json({ currentCharacter: user.currentCharacter });
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.sendStatus(500).json({ error: 'Internal server error' });
   }
 
 }
@@ -132,7 +127,7 @@ export const sumCoins = async (req: express.Request, res: express.Response) : Pr
     return res.status(200).json({ coins: user.coins });
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.sendStatus(500).json({ error: 'Internal server error' });
   }
 
 }
@@ -156,7 +151,7 @@ export const reduceCoins = async (req: express.Request, res: express.Response) :
     return res.status(200).json({ coins: user.coins });
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.sendStatus(500).json({ error: 'Internal server error' });
   }
 
 }

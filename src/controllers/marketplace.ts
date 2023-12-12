@@ -1,6 +1,6 @@
 // Import necessary modules and models
 import { getUserById } from '../db/users';
-import express, { Request, Response } from 'express';
+import express from 'express';
 
 
 
