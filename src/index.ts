@@ -27,10 +27,8 @@ server.listen(port, () => {
     swaggerDocs(app, port);
 });
 
-const MONGO_URL = 'mongodb+srv://hola:hola@cluster0.e8iyhua.mongodb.net/';
-
 mongoose.Promise = Promise;
-mongoose.connect(MONGO_URL);
+mongoose.connect(process.env.MONGO_URL);
 mongoose.connection.on('error', (error:Error) => console.log(error));
 
 app.use('/', router());
